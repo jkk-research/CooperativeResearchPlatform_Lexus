@@ -1,0 +1,8 @@
+# Imports the CRP core next to this repository (run in <ws>/src):
+#   vcs import --recursive < CooperativeResearchPlatform_Lexus/lexus.repos
+repositories:
+  CooperativeResearchPlatform:
+    type: git
+    url: https://github.com/jkk-research/CooperativeResearchPlatform.git
+    # switch to main once the core split is merged
+    version: claude/dreamy-dijkstra-c3vwid
