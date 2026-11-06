@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.14)
 project(map_loader)
 
 find_package(autoware_cmake REQUIRED)
-find_package(tier4_map_msgs REQUIRED)
 autoware_package()
 
 
