@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>lexus_launcher</name>
+  <version>0.0.0</version>
+  <description>Launchers and configuration for running CRP on the Lexus RX450h.</description>
+  <maintainer email="jozsa.david@sze.hu">AnonymDavid</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>apl_launcher</exec_depend>
+  <exec_depend>sil_launcher</exec_depend>
+  <exec_depend>lexus_bringup</exec_depend>
+  <exec_depend>rd6_driver</exec_depend>
+  <exec_depend>novatel_oem7_driver</exec_depend>
+  <exec_depend>novatel_gps_wrapper</exec_depend>
+  <exec_depend>radar_pointcloud_preprocessor</exec_depend>
+  <exec_depend>pacmod_extender</exec_depend>
+  <exec_depend>actuator_control</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
