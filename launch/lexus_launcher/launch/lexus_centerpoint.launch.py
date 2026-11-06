@@ -39,7 +39,7 @@ def generate_launch_description():
     lexus = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             join(
-                get_package_share_directory('crp_launcher'),
+                get_package_share_directory('lexus_launcher'),
                 'launch',
                 'lexus.launch.py')
         )

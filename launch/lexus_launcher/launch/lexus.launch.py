@@ -187,16 +187,6 @@ def generate_launch_description():
         'map_visualization_topic',
         default_value="/map/global_static_map_from_file/lanelet2_map_visualization",
         description='Output topic for the lanelet2 map binary')
-    
-    # pdp
-    pdm = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            join(
-                get_package_share_directory('pdp_wrapper'),
-                'launch',
-                'pdpWrapper.launch.py')
-        ),
-    )
 
     # sensor abstraction
     vehicle_tire_angle_topic_arg = DeclareLaunchArgument(
@@ -210,7 +200,7 @@ def generate_launch_description():
 
     # vehicle parameters
     vehicle_params = load_yaml(join(
-        get_package_share_directory('crp_launcher'),
+        get_package_share_directory('lexus_launcher'),
         'config',
         'vehicle',
         'lexusParams.yaml'
@@ -251,12 +241,21 @@ def generate_launch_description():
 
     # CORE
 
-    crp_core = IncludeLaunchDescription(
+    crp_apl = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             join(
-                get_package_share_directory('crp_launcher'),
+                get_package_share_directory('apl_launcher'),
                 'launch',
-                'core.launch.py')
+                'apl.launch.py')
+        )
+    )
+
+    crp_sil = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            join(
+                get_package_share_directory('sil_launcher'),
+                'launch',
+                'sil.launch.py')
         )
     )
 
@@ -302,7 +301,7 @@ def generate_launch_description():
                 'rd6.launch.py')
         ),
         launch_arguments={
-            'radar_config_file'             : join(get_package_share_directory('crp_launcher'),'config','radar','fcRadarParams.yaml'),
+            'radar_config_file'             : join(get_package_share_directory('lexus_launcher'),'config','radar','fcRadarParams.yaml'),
             'radar_interface'               : 'can8',
             'radar_namespace'               : '/sensing/radar/fc',
             'radar_locations_frame_id'      : 'lexus3/radar_front_center',
@@ -354,7 +353,7 @@ def generate_launch_description():
                 'rd6.launch.py')
         ),
         launch_arguments={
-            'radar_config_file'             : join(get_package_share_directory('crp_launcher'),'config','radar','flRadarParams.yaml'),
+            'radar_config_file'             : join(get_package_share_directory('lexus_launcher'),'config','radar','flRadarParams.yaml'),
             'radar_interface'               : 'can6',
             'radar_namespace'               : '/sensing/radar/fl',
             'radar_locations_frame_id'      : 'lexus3/radar_front_left',
@@ -406,7 +405,7 @@ def generate_launch_description():
                 'rd6.launch.py')
         ),
         launch_arguments={
-            'radar_config_file'             : join(get_package_share_directory('crp_launcher'),'config','radar','frRadarParams.yaml'),
+            'radar_config_file'             : join(get_package_share_directory('lexus_launcher'),'config','radar','frRadarParams.yaml'),
             'radar_interface'               : 'can7',
             'radar_namespace'               : '/sensing/radar/fr',
             'radar_locations_frame_id'      : 'lexus3/radar_front_right',
@@ -458,7 +457,7 @@ def generate_launch_description():
                 'rd6.launch.py')
         ),
         launch_arguments={
-            'radar_config_file'             : join(get_package_share_directory('crp_launcher'),'config','radar','rlRadarParams.yaml'),
+            'radar_config_file'             : join(get_package_share_directory('lexus_launcher'),'config','radar','rlRadarParams.yaml'),
             'radar_interface'               : 'can4',
             'radar_namespace'               : '/sensing/radar/rl',
             'radar_locations_frame_id'      : 'lexus3/radar_rear_left',
@@ -510,7 +509,7 @@ def generate_launch_description():
                 'rd6.launch.py')
         ),
         launch_arguments={
-            'radar_config_file'             : join(get_package_share_directory('crp_launcher'),'config','radar','rrRadarParams.yaml'),
+            'radar_config_file'             : join(get_package_share_directory('lexus_launcher'),'config','radar','rrRadarParams.yaml'),
             'radar_interface'               : 'can5',
             'radar_namespace'               : '/sensing/radar/rr',
             'radar_locations_frame_id'      : 'lexus3/radar_rear_right',
@@ -610,17 +609,6 @@ def generate_launch_description():
     )
 
 
-
-    sensor_abstraction = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            join(
-                get_package_share_directory('prcp_sensor_abstraction'),
-                'launch',
-                'sensor_abstraction.launch.py')
-        )
-    )
-
-
     return LaunchDescription([
         # args
 
@@ -663,11 +651,9 @@ def generate_launch_description():
         vehicle_param_swr_arg,
         vehicle_param_L_arg,
 
-        # pdp
-        pdm,
-
         # core
-        crp_core,
+        crp_apl,
+        crp_sil,
 
         # vehicle nodes
         static_tf,
@@ -692,5 +678,4 @@ def generate_launch_description():
         radar_pointcloud_merger,
         vehicle_can,
         pacmod_extender,
-        sensor_abstraction,
     ])
