@@ -1,0 +1,29 @@
+[submodule "crp_VIL/lexus_bringup"]
+	path = crp_VIL/lexus_bringup
+	url = git@github.com:jkk-research/lexus_bringup
+[submodule "crp_VIL/radar_driver"]
+	path = crp_VIL/radar_driver
+	url = git@github.com:jkk-research/radar_driver.git
+	branch = ros2-humble
+[submodule "crp_VIL/novatel_oem7_driver"]
+	path = crp_VIL/novatel_oem7_driver
+	url = git@github.com:jkk-research/novatel_oem7_driver.git
+	branch = humble
+[submodule "crp_VIL/ouster_ros"]
+	path = crp_VIL/ouster_ros
+	url = git@github.com:jkk-research/ouster-ros.git
+[submodule "crp_VIL/kvaser_interface"]
+	path = crp_VIL/kvaser_interface
+	url = git@github.com:astuff/kvaser_interface.git
+	branch = ros2_master
+[submodule "crp_VIL/duro_gps_driver"]
+	path = crp_VIL/duro_gps_driver
+	url = git@github.com:szenergy/duro_gps_driver
+	branch = ros2-humble
+[submodule "crp_VIL/mpc_camera_driver"]
+	path = crp_VIL/mpc_camera_driver
+	url = git@github.com:jkk-research/mpc_cam_driver
+[submodule "crp_CIL/kalman_pos"]
+	path = crp_CIL/kalman_pos
+	url = git@github.com:jkk-research/kalman_pos.git
+	branch = ros2
