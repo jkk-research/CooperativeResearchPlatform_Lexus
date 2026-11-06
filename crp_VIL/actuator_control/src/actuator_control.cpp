@@ -24,9 +24,6 @@ crp::vil::ActuatorControl::ActuatorControl() : Node("actuator_control")
     m_sub_behavior_ = this->create_subscription<crp_msgs::msg::Behavior>(
         "/ui/behavior", 10,
         std::bind(&ActuatorControl::behaviorCallback, this, std::placeholders::_1));
-    m_sub_pdp_ = this->create_subscription<pdp_if::msg::PdpPersonalizedParamsActive>(
-        "/PdpPersonalizedParamsActive", 10,
-        std::bind(&ActuatorControl::pdpCallback, this, std::placeholders::_1));
 
     m_accel_pub_ = this->create_publisher<pacmod3_msgs::msg::SystemCmdFloat>("pacmod/accel_cmd", 10);
     m_brake_pub_ = this->create_publisher<pacmod3_msgs::msg::SystemCmdFloat>("pacmod/brake_cmd", 10);
@@ -48,29 +45,10 @@ void crp::vil::ActuatorControl::behaviorCallback(const crp_msgs::msg::Behavior m
     setLongitudinalDynamics();
 }
 
-void crp::vil::ActuatorControl::pdpCallback(const pdp_if::msg::PdpPersonalizedParamsActive::SharedPtr msg)
-{
-    m_pdpAccelMode = msg->pdpout_accmap_pos_mode;
-    m_pdpDecelMode = msg->pdpout_accmap_neg_mode;
-
-    setLongitudinalDynamics();
-}
-
 void crp::vil::ActuatorControl::setLongitudinalDynamics()
 {
-    uint8_t accelMode = m_pdpAccelMode;
-    uint8_t decelMode = m_pdpDecelMode;
-
-    if (m_pdpAccelMode != 0)
-        accelMode = m_pdpAccelMode;
-    else
-        accelMode = m_uiAccelMode;
-    
-    if (m_pdpDecelMode != 0)
-        decelMode = m_pdpDecelMode;
-    else
-        decelMode = m_uiDecelMode;
-
+    uint8_t accelMode = m_uiAccelMode;
+    uint8_t decelMode = m_uiDecelMode;
 
     if (accelMode == 1)
     {
