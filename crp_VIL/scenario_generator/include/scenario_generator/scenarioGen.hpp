@@ -3,6 +3,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <crp_msgs/msg/scenario.hpp>
+#include <autoware_internal_planning_msgs/msg/path_point_with_lane_id.hpp>
 
 
 class ScenarioGenerator : public rclcpp::Node

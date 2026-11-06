@@ -12,7 +12,7 @@ ScenarioGenerator::ScenarioGenerator() : Node("scenario_gen")
     crp_msgs::msg::PathWithTrafficRules path;
     for (uint16_t i = 0; i <= ceil(pathLength); ++i)
     {
-        tier4_planning_msgs::msg::PathPointWithLaneId pt;
+        autoware_internal_planning_msgs::msg::PathPointWithLaneId pt;
         pt.point.pose.position.x = i;
         pt.point.pose.position.y = 0;
         pt.point.longitudinal_velocity_mps = 30.0;
