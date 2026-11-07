@@ -13,6 +13,7 @@
   <exec_depend>sil_launcher</exec_depend>
   <exec_depend>lexus_bringup</exec_depend>
   <exec_depend>rd6_driver</exec_depend>
+  <exec_depend>ros2_socketcan</exec_depend>
   <exec_depend>novatel_oem7_driver</exec_depend>
   <exec_depend>novatel_gps_wrapper</exec_depend>
   <exec_depend>radar_pointcloud_preprocessor</exec_depend>

@@ -49,8 +49,6 @@ packages=(
   ouster_sensor_msgs
   ouster_ros
   scenario_generator
-  ros2_socketcan_msgs
-  ros2_socketcan
   rd6_msgs
   rd6_driver
   radar_pointcloud_preprocessor
