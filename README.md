@@ -23,7 +23,7 @@ The other dependencies declared by the packages, including the Autoware message 
 
 ## Workspace
 
-Both repositories sit side by side in one colcon `src/`; `lexus.repos` selects the core branch.
+Both repositories sit side by side in one colcon `src/`; `lexus.repos` pins the matching core commit (`b493491`).
 
 ```bash
 mkdir -p ~/crp_ws/src && cd ~/crp_ws/src
@@ -104,6 +104,6 @@ Bags are recorded with `ros2 bag record` as MCAP (Zstd compression, `config/mcap
 ## Notes
 
 - **PDP is removed.** `lexus.launch.py` no longer includes `pdp_wrapper`, and `actuator_control` no longer subscribes to `/PdpPersonalizedParamsActive`; its acceleration and deceleration limits follow the `/ui/behavior` modes only.
-- **Built but not launched.** `build_lexus.sh` builds `duro_gps_driver` and `duro_gps_wrapper`, `mpc_camera_driver`, `kalman_pos` and `ekf_wrapper`, `actuator_control`, `lanelet_handler` and `map_loader`, and `scenario_generator`, but `lexus.launch.py` does not start them. They are kept as-is apart from the PDP removal in `actuator_control` and the unused `tier4_map_msgs` dependency dropped from `map_loader`; `lexus.launch.py` still defines the `ekf_*` and `map_*` arguments and an `actuator_control` include but does not add them to its `LaunchDescription`.
+- **Built but not launched.** `build_lexus.sh` builds `duro_gps_driver` and `duro_gps_wrapper`, `mpc_camera_driver`, `kalman_pos` and `ekf_wrapper`, `actuator_control`, `lanelet_handler` and `map_loader`, and `scenario_generator`, but `lexus.launch.py` does not start them. They are kept as-is apart from the PDP removal in `actuator_control`, the unused `tier4_map_msgs` dependency dropped from `map_loader`, the `autoware_internal_planning_msgs` port of `scenario_generator` and a few missing dependency declarations; `lexus.launch.py` still defines the `ekf_*` and `map_*` arguments and an `actuator_control` include but does not add them to its `LaunchDescription`.
 - **`map_hash_generator`**, installed by `map_loader`, imports `tier4_external_api_msgs` at runtime. That package is not a declared dependency; provide it yourself before using the script.
 - **The core sensor abstraction has fixed inputs.** `prcp_sensor_abstraction`, started by `sil.launch.py`, reads twist and accel from `/sensing/vehicle/twist` and `/sensing/vehicle/accel` (published by `pacmod_extender`), the tire angle from `/sensing/vehicle/tire_angle` and the pose from `/sensing/gnss/pose_with_covariance`, and builds a 75 m local path. The `lexus.launch.py` arguments `kinematic_state_source`, `twist_topic`, `accel_topic`, `localization_source`, `vehicle_tire_angle_topic` and `local_path_length` no longer configure it: `accel_topic`, `localization_source`, `vehicle_tire_angle_topic` and `local_path_length` are unused, and `twist_topic` (by default `/sensing/<kinematic_state_source>/twist`, i.e. `/sensing/gnss/twist`) only feeds the radar doppler compensation and aggregation.
