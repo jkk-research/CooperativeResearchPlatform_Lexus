@@ -23,7 +23,7 @@ The other dependencies declared by the packages, including the Autoware message 
 
 ## Workspace
 
-Both repositories sit side by side in one colcon `src/`; `lexus.repos` pins the matching core commit (`b493491`).
+Both repositories sit side by side in one colcon `src/`; `lexus.repos` pins the matching core commit (`f103a3f`).
 
 ```bash
 mkdir -p ~/crp_ws/src && cd ~/crp_ws/src

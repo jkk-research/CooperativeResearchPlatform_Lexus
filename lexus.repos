@@ -5,4 +5,4 @@ repositories:
     type: git
     url: https://github.com/jkk-research/CooperativeResearchPlatform.git
     # core commit of the core/Lexus split (branch claude/dreamy-dijkstra-c3vwid); bump when core changes
-    version: b4934915ca7f8bde6b510d73175ff65fe60ef657
+    version: f103a3f6c00eb872791e0df79d4c3c9af2dd9438
